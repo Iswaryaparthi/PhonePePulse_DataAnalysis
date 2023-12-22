@@ -17,11 +17,13 @@ Installation
 
 To run this project, you need to install the following packages:
 
-pip install pandas
-pip install pymysql
-plotly.graph_objects as go
-pip install streamlit
-pip install plotly
+import os
+import json
+import pandas as pd
+import numpy as np
+import mysql.connector as sql
+import streamlit as st
+import plotly.express as px
 
 To use this project, follow these steps:
 
