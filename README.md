@@ -5,25 +5,25 @@ Introduction
 
 PhonePe has become a leader among digital payment platforms, serving millions of users for their daily transactions. Known for its easy-to-use design, fast and secure payment processing, and creative features, PhonePe has gained praise and recognition in the industry. The PhonePe Pulse Data Visualization and Exploration project aims to gather valuable information from PhonePe's GitHub repository, process the data, and present it using an interactive dashboard that's visually appealing. This is accomplished using Python, Streamlit, and Plotly and MySQL.
 
-Table of Contents
+Key Skills used in this project
 
-Github Cloning
-Python
-Pandas
-MySQL
-Streamlit
-Plotly
-Installation
+- Github Cloning
+- Python
+- Pandas
+- MySQL
+- Streamlit
+- Plotly
 
-To run this project, you need to install the following packages:
 
-import os
-import json
-import pandas as pd
-import numpy as np
-import mysql.connector as sql
-import streamlit as st
-import plotly.express as px
+To run this project, you need to import the following packages:
+
+- import os
+- import json
+- import pandas as pd
+- import numpy as np
+- import mysql.connector as sql
+- import streamlit as st
+- import plotly.express as px
 
 To use this project, follow these steps:
 
