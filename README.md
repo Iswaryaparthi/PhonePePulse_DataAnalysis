@@ -55,7 +55,7 @@ Embark on an analytical journey with interactive Plotly charts and maps, offerin
 #### Live Geo Visualization Dashboard:
 Create a live geo visualization dashboard using Streamlit and Plotly for interactive data exploration, allowing you to dynamically interact with the data on maps.
 
-#### 
-Top Performers Highlight: Easily spot top 10 states, districts, and pincodes through user-friendly visualizations.
+#### Top Performers Highlight:
+Easily spot top 10 states, districts, and pincodes through user-friendly visualizations.
 
 Thank you all!  
