@@ -4,24 +4,11 @@ import plotly.express as px
 import pymysql
 import plotly.graph_objects as go
 
-st.set_page_config(page_title= "Phonepe Pulse Data Visualization and Exploration:",
+st.set_page_config(page_title= "PhonepePulse",
                     layout= "wide",
                    initial_sidebar_state= "expanded",
                    )
-
-st.sidebar.header(":wave: :violet[**Welcome All!**]",divider='rainbow')
-
-st.sidebar.subheader(":green[Technologies used:]")
-
-st.sidebar.subheader("* Github cloning - Extract data from the Phonepe pulse Github repository and clone it")
-
-st.sidebar.subheader("* Pandas,Plotly - Create a visualization dashboard using Streamlit and Plotly")
-
-st.sidebar.subheader("* Python, MySQL - Fetch the data from the MySQL database to display in the dashboard")
-
-st.sidebar.subheader("* Plotly express,Pandas - Visualize the India Map for Total Transactions and Registered Users")
-
-
+st.header(":wave: :violet[**Welcome All!**]",divider='rainbow')
 
 st.title(":rainbow[Phonepe Pulse Data Visualization and Exploration]")
 
@@ -34,6 +21,19 @@ st.markdown('''India’s digital transformation is a testament to the power of i
 st.markdown('''The project is about Cloning the PhonePe Pulse Github repository and create an comprehensive and user-friedly 
             solution for extracting, transforming and visualizing the PhonePe Pulse data for over a period of years 
             and visualize those insights in Streamlit Web Application.''')
+
+
+st.header(":green[Technologies used]")
+
+st.markdown("* Github cloning - Extract data from the Phonepe pulse Github repository and clone it")
+
+st.markdown("* Python- Get the needed data from pulse clone json file and insert into MySQL database as tables")
+
+st.markdown ("* MySQL - Display the inserted data from the MySQL database to Streamlit web application")
+                             
+st.markdown("* Pandas,Plotly - Working with charts and to create a visualization dashboard in Streamlit web application")
+
+st.markdown("* Plotly express,Choropleth - Visualize the India Map for Total Transactions and Registered Users among States")
 
 st.markdown(''' The below insights will provide you an complete understanding of Transaction analysis 
             year-wise and quarter-wise, top transactions,top registered users, most used phone brands, 
@@ -56,14 +56,6 @@ def get_data():
     connection.close()
     return df
 
-# Dropdown for selecting a state
-#selected_state = st.selectbox("Select a State:", ["andaman-&-nicobar-islands","andhra-pradesh","arunachal-pradesh","assam","bihar","chandigarh","chhattisgarh","dadra-&-nagar-haveli-&-daman-&-diu",
-                                                 # "delhi", "goa", "gujarat","haryana", "himachal-pradesh", "jammu-&-kashmir",
-                                                    #    "jharkhand","karnataka", "kerala","ladakh","lakshadweep","madhya-pradesh",
-                                                     #   "maharashtra","manipur","meghalaya","mizoram","nagaland","odisha",
-                                                    #    "puducherry", "punjab","rajasthan","sikkim", "tamil-nadu","telangana","tripura",                                                                                                              
-                                                    #    "uttar-pradesh","uttarakhand","west-bengal"])
-  
 # Fetch data from MySQL based on the selected state
 df = get_data()
 
@@ -86,7 +78,18 @@ fig_pie = px.pie(
 )
 st.plotly_chart(fig_pie)
 
+# Display a pie chart for Transaction Amount distribution
+fig_pie = px.pie(
+    filtered_data,
+    names='Transaction_type',
+    values='Transaction_amount',
+    title=f'Transaction Amount Distribution in {selected_state}',
+    color='Transaction_type',
+)
+st.plotly_chart(fig_pie)
+
 # Display a scatter plot for Transaction Amount vs Transaction Count
+
 fig_scatter = px.scatter(
     filtered_data,
     x='Transaction_count',
@@ -98,18 +101,14 @@ fig_scatter = px.scatter(
 )
 st.plotly_chart(fig_scatter)
 
-# Bar chart for Transaction Amount
+# Bar chart for Transaction Amount year wise
 fig_amount = px.bar(df, x='Year', y='Transaction_amount', title=f'Transaction Amount year wise - {selected_state}')
 fig_amount.update_layout(height=400,width = 500)                        
-# Explicitly set the x-axis range to avoid auto-adjustment when zooming
-#fig_amount.update_xaxes(range=[min(df['Year']), max(df['Year'])])
 st.plotly_chart(fig_amount,use_container_width=True)
 
-# Bar chart for Transaction Count
+# Bar chart for Transaction Count year wise
 fig_count = px.bar(df, x='Year', y='Transaction_count', title=f'Transaction Count year wise - {selected_state}')
 fig_count.update_layout(height=400, width =500)
-# Explicitly set the x-axis range to avoid auto-adjustment when zooming
-#fig_count.update_xaxes(range=[min(df['Year']), max(df['Year'])])
 st.plotly_chart(fig_count,use_container_width=True)
 
 #--------Transaction Analysis Quarter-wise------------#
@@ -224,7 +223,6 @@ filtered_data = grouped_data[grouped_data['State'] == selected_state]
 # Sort by Transaction_Count in descending order and get top 10
 top_10 = filtered_data.sort_values(by=('Transaction_count'), ascending=False).head(10)
 
-# Display the top 10 registered users based on state and pincode
 st.write(f'Top 10 Transactions for {selected_state}:')
 st.write(top_10.head(10))
 
@@ -323,5 +321,20 @@ fig = px.choropleth(
 fig.update_geos(fitbounds="locations", visible=False)
 
 st.plotly_chart(fig)
+
+st.subheader(':red[Findings and Recommendations]')
+
+st.markdown('''Based on the above data visualizations from 2018 to 2023, the number of transactions and users for
+            PhonePe were drastically increasing. We can able to see that, the PhonePe users are high in 
+            northern India comparativley in other parts of India. This might be due to security and safety, 
+            language, marketing style etc., are be the reason for less users in other parts of India.
+            ''')
+st.markdown(''' Xiaomi,Vivo,Samsung are the top device which is used by many users among all states.
+            This might be the reason of peformance, ease of usage , budget friendly devices etc., ''')
+
+st.markdown(''' In order to increase their business market in other parts of India, they need to be more focus on 
+            customer service, change in marketing strategy, updating the app UI , providing best deals and offers
+             etc., If they continuously working on these areas, definitely PhonePe will  occupy the top position
+            in digital platform industry in next five years.''')
 
 st.subheader(':blue[Thank you All!]:sunglasses:')
