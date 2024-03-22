@@ -45,8 +45,8 @@ st.markdown(''' The below insights will provide you an complete understanding of
 def get_data():
     connection = pymysql.connect(
                    host="localhost",
-                   user="root",
-                   password="Pwd@123456",
+                   user="username",
+                   password="password",
                    database="phonepe_pulse"
     )
 
@@ -117,8 +117,8 @@ st.plotly_chart(fig_count,use_container_width=True)
 def get_data():
     connection = pymysql.connect(
                    host="localhost",
-                   user="root",
-                   password="Pwd@123456",
+                   user="username",
+                   password="password",
                    database="phonepe_pulse"
     )
 
@@ -153,8 +153,8 @@ if __name__ == "__main__":
 def get_data():
     connection = pymysql.connect(
                    host="localhost",
-                   user="root",
-                   password="Pwd@123456",
+                   user="username",
+                   password="password",
                    database="phonepe_pulse"
     )
 
@@ -190,8 +190,8 @@ st.plotly_chart(fig_treemap)
 def get_data():
     connection = pymysql.connect(
                    host="localhost",
-                   user="root",
-                   password="Pwd@123456",
+                   user="username",
+                   password="password",
                    database="phonepe_pulse"
     )
 
@@ -239,8 +239,8 @@ st.plotly_chart(fig)
 def get_data():
     connection = pymysql.connect(
                    host="localhost",
-                   user="root",
-                   password="Pwd@123456",
+                   user="username",
+                   password="password",
                    database="phonepe_pulse"
     )
 
